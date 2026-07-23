@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  background-color: #12091f;
+}
+
+.ContenedorTitulo {
+  display: flex;
+  justify-content: center;
+}
+
+.Titulo {
+  color: #ffff;
+}
+
+.ContenedorBoxes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+/*Box Izquierda*/
+
+.BoxIzq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1E1033;
+  width: 400px;
+  height: 400px;
+  border-radius: 20px;
+  gap: 150px;
+}
+
+.SelectTipo {
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  color: #FF4696;
+  background-color: #150b25;
+}
+
+.InputMonto {
+  width: 220px;
+  height: 38px;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #FF4696;
+  background-color: #150b25;
+}
+
+.BtnConvertir {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  margin-right: 130px;
+  border: none;
+  border-radius: 10px;
+  color: #FF4696;
+  background-color: #150b25;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.BtnConvertir img {
+  width: 20px;
+}
+
+.BtnConvertir:hover {
+  color: #150b25;
+  background-color: #FF4696;
+}
+
+/*Fin Box Izquierda*/
+
+.BoxDer {
+  display: flex;
+  flex-direction: column;
+  background-color: #FF4696;
+  width: 400px;
+  height: 400px;
+  border-radius: 20px;
+}
+
+.TituloResultado {
+  margin-top: 70px;
+  margin-left: 50px;
+  margin-right: 150px;
+  color: #1E1033;
+  font-size: 2.5rem;
+}
+
+.SpanResultado {
+  margin-top: 20px;
+  margin-left: 50px;
+}
