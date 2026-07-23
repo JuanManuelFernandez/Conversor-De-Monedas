@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [actual, setActual] = useState(''); //Moneda de origen
+  const [actual, setActual] = useState('USD'); //Moneda de origen
   const [equivalente, setEquivalente] = useState('EUR'); //Moneda destino
   const [cantidad, setCantidad] = useState(1); //Guarda el monto que se quiere convertir
   const [resultado, setResultado] = useState(null); //Guarda el resultado final convertido
@@ -31,12 +31,20 @@ function App() {
         <div className='ContenedorBoxes'>
           <div className='BoxIzq'>
             <div className='ContenedorTipo'>
-              <select className='SelectTipo' value={actual} onChange={e => setActual(e.target.value)}>
-                <option value='USD'>USD</option>
-                <option value='EUR'>EUR</option>
-                <option value='ARS'>ARS</option>
+              <div className='ContenedorActual'>
+                <select className='SelectTipo' value={actual} onChange={e => setActual(e.target.value)}>
+                  <option value='USD'>USD</option>
+                  <option value='EUR'>EUR</option>
+                  <option value='ARS'>ARS</option>
+                </select>
+                <input className='InputMonto' type='number' value={cantidad} onChange={e => setCantidad(e.target.value)}></input>
+              </div>
+
+              <select className='SelectEquivalente' value={equivalente} onChange={e => setEquivalente(e.target.value)}>
+                  <option value='USD'>USD</option>
+                  <option value='EUR'>EUR</option>
+                  <option value='ARS'>ARS</option>
               </select>
-              <input className='InputMonto' type='number' value={cantidad} onChange={e => setCantidad(e.target.value)}></input>
             </div>
             <button className='BtnConvertir' onClick={convertir}>Convertir<img src='src/assets/Flecha.png' className='IconoFlecha'></img></button>
           </div>
