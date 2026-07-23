@@ -16,10 +16,22 @@ function App() {
   
   const formatoOpcion = (opcion) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px'}}>
-      <img src={opcion.bandera} alt={opcion.value} style={{ width: '20px' }} />
-      <span>{opcion.label}</span>
+      <img src={opcion.bandera} alt={opcion.value} style={{ width: '20px'}} />
+      <span style={{color: '#fff'}}>{opcion.label}</span>
     </div>
   )
+
+  const estilosSelect = {
+    control: (estiloBase) => ({
+      ...estiloBase, 
+      backgroundColor: '#150b25', 
+      border: 'none'
+    }),
+    option: (estiloBase) => ({
+      ...estiloBase, 
+      backgroundColor: '#150b25',
+    })
+  }
 
   const convertir = async () => {
     try{ 
@@ -53,6 +65,7 @@ function App() {
                   onChange={(opcionSeleccionada) => setActual(opcionSeleccionada)}
                   formatOptionLabel={formatoOpcion}
                   className='SelectTipo'
+                  styles={estilosSelect}
                 />
                 <input className='InputMonto' type='number' value={cantidad} onChange={e => setCantidad(e.target.value)}></input>
               </div>
@@ -63,6 +76,7 @@ function App() {
                 onChange={(opcionEquivalente) => setEquivalente(opcionEquivalente)}
                 formatOptionLabel={formatoOpcion}
                 className='SelectEquivalente'
+                styles={estilosSelect}
               />
             </div>
             <button className='BtnConvertir' onClick={convertir}>Convertir<img src='src/assets/Flecha.png' className='IconoFlecha'></img></button>
