@@ -178,3 +178,24 @@ body {
   color: #ffff;
   margin-left: 20px;
 }
+
+.Historial {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  margin-top: 280px;
+  margin-left: 20px;
+  gap: 5px;
+}
+
+.TituloHistorial {
+  font-size: 1.1rem;
+}
+
+.ItemHistorial {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  color: #ffffffd2;
+  font-size: 0.9rem;
+  gap: 100px;
+}

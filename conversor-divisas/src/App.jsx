@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Select from 'react-select'
 import './App.css'
 
@@ -13,6 +13,15 @@ function App() {
   const [equivalente, setEquivalente] = useState(opcionesMoneda[2]); //Moneda destino
   const [cantidad, setCantidad] = useState(1); //Guarda el monto que se quiere convertir
   const [resultado, setResultado] = useState(null); //Guarda el resultado final convertido
+
+  const [historial, setHistorial] = useState([]);
+  
+  useEffect(() => {
+    const guardado = localStorage.getItem('historialConversion')
+    if(guardado){
+      setHistorial(JSON.parse(guardado));
+    }
+  }, [])
   
   const formatoOpcion = (opcion) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px'}}>
@@ -40,13 +49,28 @@ function App() {
       const data = await res.json();
       console.log(data);
       const rate = data.rates[equivalente.value];
-      setResultado((cantidad * rate).toFixed(2))
+      const nuevoResultado = ((cantidad * rate).toFixed(2))
+      setResultado(nuevoResultado)
       console.log(resultado)
+
+      const nuevaConversion = {
+        id: Date.now(),
+        montoOriginal: cantidad,
+        monedaOrigen: actual.value,
+        montoConvertido: nuevoResultado,
+        monedaDestino: equivalente.value,
+      };
+
+      const historialActualizado = [nuevaConversion, ...historial].slice(0, 3);
+      setHistorial(historialActualizado);
+      localStorage.setItem('historialConversion', JSON.stringify(historialActualizado));
+
     }
     catch(error){
       console.log("Error en la conversión");
     }
   }
+
 
   return (
     <>
@@ -99,6 +123,16 @@ function App() {
               <span className='TituloResultado'>Resultado</span>
               <span className='SpanResultado'>{resultado}</span>
               {resultado && <span className='TipoMoneda'>{equivalente.value}</span>}
+
+              <div className='Historial'>
+                <span className='TituloHistorial'>Conversiones recientes</span>
+                {historial.map((item) => (
+                  <div key={item.id} className='ItemHistorial'>
+                    <span>{item.montoOriginal} {item.monedaOrigen}</span>
+                    <span>{item.montoConvertido} {item.monedaDestino}</span>
+                  </div>
+                ))}
+              </div>
           </div>    
         </div>
       </section>
