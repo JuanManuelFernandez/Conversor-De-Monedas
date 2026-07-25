@@ -53,6 +53,7 @@ function App() {
       <section className='Main'>
         <div className='ContenedorTitulo'>
           <h1 className='Titulo'>Conversor de divisas</h1>
+          <p className='Texto'>Convierte Pesos, Dolares y Euros</p>
         </div>
 
         <div className='ContenedorBoxes'>
@@ -70,6 +71,8 @@ function App() {
                 <input className='InputMonto' type='number' value={cantidad} onChange={e => setCantidad(e.target.value)}></input>
               </div>
 
+              <img src='src/assets/conversion.png' className='ImgConversion'></img>
+
               <Select
                 options={opcionesMoneda}
                 value={equivalente}
@@ -79,6 +82,15 @@ function App() {
                 styles={estilosSelect}
               />
             </div>
+
+            <div className='ContenedorBtnsRapidos'>
+              <span className='SpanMontos'>Montos rapidos</span>
+              <div className='BtnsRapidos'>
+                <button onClick={() => setCantidad(100)}>100</button>
+                <button onClick={() => setCantidad(500)}>500</button>
+                <button onClick={() => setCantidad(1000)}>1000</button>
+              </div>
+            </div>
             <button className='BtnConvertir' onClick={convertir}>Convertir<img src='src/assets/Flecha.png' className='IconoFlecha'></img></button>
           </div>
 
@@ -86,6 +98,7 @@ function App() {
           <div className='BoxDer'>
               <span className='TituloResultado'>Resultado</span>
               <span className='SpanResultado'>{resultado}</span>
+              {resultado && <span className='TipoMoneda'>{equivalente.value}</span>}
           </div>    
         </div>
       </section>
